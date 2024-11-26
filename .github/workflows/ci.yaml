@@ -1,0 +1,27 @@
+# we want to specify when it should run
+---
+name: Complete DevOps Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+job:
+  build_and_push:
+    runs_on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Set Short SHA
+        run: |
+          echo "SHORT_SHA = ${echo ${GITHUB_SHA} | cut -ci-7}" >> GITHUB_ENV
+      - name: Build Docker Image
+        run: |
+          docker build -t profgreatwonder/complete-devops-pipeline:${{ env.SHORT_SHA }} .
+      - name: Login to DockerHub
+        run: |
+          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "{{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+      - name: Push to Docker Hub
+        run: |
+          docker push profgreatwonder/complete-devops-pipeline:${{ env.SHORT_SHA }}
