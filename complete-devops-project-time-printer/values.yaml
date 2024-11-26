@@ -1,0 +1,13 @@
+image:
+  repository: profgreatwonder/complete-devops-pipeline # docker repo name
+  tag: latest
+  pullPolicy: IfNotPresent # tells the kubernetes kubelets when to direct the container runtime to pull an image from a registry
+service:
+  type: ClusterIP
+  port: 8080
+ingress:
+  enabled: false
+serviceAccount:
+  enabled: false
+autoScaling:
+  enabled: false
