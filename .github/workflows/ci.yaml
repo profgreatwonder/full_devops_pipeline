@@ -28,7 +28,7 @@ jobs:
       - name: Configure Git Author
         run: |
           git config --local user.email "muoghaluchidinma@gmail.com"
-          git config --local user.name "profGWonder"
+          git config --local user.name "profgreatwonder"
       - name: Update Helm Chart with new Image Tag
         run: |
           sed -i "s/tag:.*/tag: ${{ env.SHORT_SHA }}/" ./complete-devops-project-time-printer/values.yaml 
