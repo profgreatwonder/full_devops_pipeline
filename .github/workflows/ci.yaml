@@ -28,10 +28,10 @@ jobs:
       - name: Configure Git Author
         run: |
           git config --local user.email "muoghaluchidinma@gmail.com"
-          git config --local user.name "profgreatwonder"
+          git config --local user.name "profGWonder"
       - name: Update Helm Chart with new Image Tag
         run: |
-          sed -i "s/tag:.*/tag: ${{ env.GITHUB_TOKEN }}/" ./complete-devops-project-time-printer/values.yaml 
+          sed -i "s/tag:.*/tag: ${{ env.SHORT_SHA }}/" ./complete-devops-project-time-printer/values.yaml 
           git add ./complete-devops-project-time-printer/values.yaml
           git commit -m "updated image tag to ${{ env.SHORT_SHA }}"
           git push
