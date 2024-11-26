@@ -21,7 +21,7 @@ jobs:
           docker build -t profgreatwonder/complete-devops-pipeline:${{ env.SHORT_SHA }} .
       - name: Login to DockerHub
         run: |
-          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "{{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
       - name: Push to Docker Hub
         run: |
           docker push profgreatwonder/complete-devops-pipeline:${{ env.SHORT_SHA }}
